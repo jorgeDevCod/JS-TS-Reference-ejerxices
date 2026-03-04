@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0a0a1a"/>
+    </linearGradient>
+    <linearGradient id="split" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="50%" stop-color="#f7df1e"/>
+      <stop offset="50%" stop-color="#3178c6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo redondeado -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+
+  <!-- Borde sutil -->
+  <rect width="32" height="32" rx="7" fill="none" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- Línea divisora central vertical -->
+  <line x1="16" y1="4" x2="16" y2="28" stroke="#2a2a4a" stroke-width="1"/>
+
+  <!-- JS — lado izquierdo -->
+  <!-- Letra J -->
+  <text
+    x="4.5"
+    y="22"
+    font-family="'Courier New', monospace"
+    font-size="12"
+    font-weight="900"
+    fill="#f7df1e"
+    letter-spacing="-0.5"
+  >JS</text>
+
+  <!-- TS — lado derecho -->
+  <text
+    x="17"
+    y="22"
+    font-family="'Courier New', monospace"
+    font-size="12"
+    font-weight="900"
+    fill="#3178c6"
+    letter-spacing="-0.5"
+  >TS</text>
+
+  <!-- Punto decorativo inferior -->
+  <circle cx="16" cy="27" r="1.2" fill="url(#split)"/>
+</svg>
