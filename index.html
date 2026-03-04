@@ -16,7 +16,7 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0a0f">
   <link rel="canonical" href="https://js-ts-reference.netlify.app/">
-  
+
   <!-- ===== OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ===== -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://js-ts-reference.netlify.app/">
@@ -28,7 +28,7 @@
   <meta property="og:image:alt" content="JS / TS Reference — Guía interactiva de JavaScript y TypeScript">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="JS / TS Reference">
-  
+
   <!-- ===== TWITTER CARD ===== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://js-ts-reference.netlify.app/">
@@ -37,7 +37,7 @@
   <meta name="twitter:image" content="https://js-ts-reference.netlify.app/og-image.png">
   <meta name="twitter:creator" content="@jorgeDevCod">
   <meta name="twitter:site" content="@jorgeDevCod">
-  
+
   <!-- ===== PWA / MOBILE ===== -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,6 +51,9 @@
   </head>
 
   <body>
+    <!-- Overlay para cerrar el sidebar en móvil -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
     <header>
       <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
       <div class="logo"><span class="js">JS</span> / <span class="ts">TS</span> Reference</div>
@@ -1381,6 +1384,7 @@
       </main>
     </div>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="app.js"></script>
   </body>
 

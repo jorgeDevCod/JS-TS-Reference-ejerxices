@@ -1,16 +1,16 @@
+<style>
+
+/* ===== RESET & BASE ===== */
 *,
 *::before,
 *::after {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-    --header-h: 52px;
+    --header-h: 70px;
     --aside-w: 240px;
     --bg: #0a0a0f;
     --surface: #111118;
@@ -68,7 +68,7 @@ body {
 header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 0 16px;
+    padding: 8px 16px;
     height: var(--header-h);
     display: flex;
     align-items: center;
@@ -198,7 +198,7 @@ aside.hidden {
 .s-item {
     padding: 9px 16px;
     cursor: pointer;
-    font-size: var(--font-md);
+    font-size: var(--font-sm);
     color: var(--muted);
     border-left: 2px solid transparent;
     display: flex;
@@ -297,7 +297,7 @@ main {
 
 .sec-desc {
     color: var(--muted);
-    font-size: var(--font-md);
+    font-size: var(--font-sm);
     line-height: 1.75;
     margin-bottom: 24px;
     max-width: 640px;
@@ -822,38 +822,62 @@ pre {
     }
 }
 
-/* Tablet (600–768px): sidebar colapsado por defecto, accesible vía toggle */
+/* ── Móvil + Tablet: drawer lateral sobre el contenido ── */
 @media (max-width: 768px) {
     :root {
-        --aside-w: 200px;
+        --aside-w: 220px;
         --header-h: 48px;
     }
 
     .layout {
         overflow: visible;
         height: auto;
-        min-height: calc(100vh - 48px);
+        min-height: calc(100vh - var(--header-h));
     }
 
+    .tabs {
+        font-size: var(--font-sm);
+        margin-left: auto;
+        flex-direction: row-reverse;
+    }
+
+    /* El sidebar es un drawer flotante — SIEMPRE oculto por defecto */
     aside {
-        position: fixed;
-        top: var(--header-h);
-        left: 0;
-        height: calc(100vh - var(--header-h));
-        z-index: 150;
-        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
-        width: 0;
-        opacity: 0;
-        overflow: hidden;
-        padding: 0;
-        border: none;
+        position: fixed !important;
+        top: var(--header-h) !important;
+        left: 0 !important;
+        height: calc(100vh - var(--header-h)) !important;
+        z-index: 300 !important;
+        box-shadow: 6px 0 24px rgba(0, 0, 0, 0.6);
+        /* Estado cerrado */
+        width: 0 !important;
+        opacity: 0 !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        border: none !important;
+        transition: width 0.28s ease, opacity 0.28s ease, padding 0.28s ease !important;
     }
 
+    /* Estado abierto — activado por JS añadiendo la clase mobile-open */
     aside.mobile-open {
-        width: var(--aside-w);
-        opacity: 1;
-        padding: 16px 0 24px;
-        border-right: 1px solid var(--border);
+        width: var(--aside-w) !important;
+        opacity: 1 !important;
+        padding: 16px 0 24px !important;
+        border-right: 1px solid var(--border) !important;
+        overflow-y: auto !important;
+    }
+
+    /* Overlay oscuro detrás del drawer */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 299;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
     }
 
     main {
@@ -862,28 +886,32 @@ pre {
         overflow-x: hidden;
     }
 
+    .sec {
+        max-width: 100%;
+    }
+
     pre {
         font-size: 11px;
     }
 }
 
-/* Móvil (< 600px) */
-@media (max-width: 600px) {
+/* ── Móvil pequeño (< 480px) ── */
+@media (max-width: 480px) {
     :root {
         --header-h: 44px;
     }
 
     header {
-        padding: 0 12px;
-        gap: 8px;
+        padding: 0 10px;
+        gap: 6px;
     }
 
     .logo {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .main-tab {
-        padding: 4px 10px;
+        padding: 4px 9px;
         font-size: 10px;
     }
 
@@ -893,11 +921,11 @@ pre {
     }
 
     main {
-        padding: 12px;
+        padding: 10px;
     }
 
     .card {
-        padding: 12px;
+        padding: 10px;
     }
 
     .card-title {
@@ -905,14 +933,14 @@ pre {
     }
 
     pre {
-        font-size: 10.5px;
+        font-size: 10px;
         line-height: 1.6;
-        padding: 10px;
+        padding: 8px;
     }
 
     .ex-header {
-        padding: 12px;
-        gap: 10px;
+        padding: 10px;
+        gap: 8px;
     }
 
     .ex-num {
@@ -926,34 +954,33 @@ pre {
     }
 
     .tog-btn {
-        padding: 10px 4px;
+        padding: 9px 4px;
         font-size: 10px;
-        gap: 4px;
+        gap: 3px;
     }
 
     .exp-panel-inner {
-        padding: 12px;
+        padding: 10px;
         font-size: 11px;
     }
 
     .sec-title {
-        font-size: clamp(16px, 5vw, 22px);
+        font-size: clamp(15px, 5vw, 20px);
     }
 }
 
-@media (min-width: 990px) {
+/* Pantalla grande (> 1400px) */
+@media (min-width: 1400px) {
     :root {
         --aside-w: 260px;
     }
 
     main {
         padding: 40px 56px;
-        font-size: var(--font-lg);
     }
 
     .sec {
-        max-width: 1280px;
-        margin: auto;
+        max-width: 960px;
     }
 
     body {
@@ -973,11 +1000,9 @@ pre {
 
     main {
         padding: 48px 72px;
-        font-size: var(--font-xl);
     }
 
     .sec {
-        max-width: 2480px;
-        margin: auto;
+        max-width: 1050px;
     }
 }
