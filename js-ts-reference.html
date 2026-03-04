@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  </head>
+
+  <body>
+    <header>
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+      <div class="logo"><span class="js">JS</span> / <span class="ts">TS</span> Reference</div>
+      <div class="tabs">
+        <button class="main-tab act-js" onclick="switchTab('js',this)">JavaScript</button>
+        <button class="main-tab" onclick="switchTab('ts',this)">TypeScript</button>
+        <button class="main-tab" onclick="switchTab('ex',this)">⚡ Ejercicios</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <!-- SIDEBAR JS -->
+      <aside id="sb-js">
+        <div class="s-label">Arrays</div>
+        <div class="s-item active" onclick="show('arr-bas',this)">Métodos Básicos <span class="badge b-bas">básico</span></div>
+        <div class="s-item" onclick="show('arr-mid',this)">Métodos Intermedios <span class="badge b-mid">medio</span></div>
+        <div class="s-item" onclick="show('arr-adv',this)">Métodos Avanzados <span class="badge b-adv">avanzado</span></div>
+        <div class="s-label">Objetos</div>
+        <div class="s-item" onclick="show('obj-bas',this)">Métodos Básicos <span class="badge b-bas">básico</span></div>
+        <div class="s-item" onclick="show('obj-mid',this)">Métodos Intermedios <span class="badge b-mid">medio</span></div>
+        <div class="s-item" onclick="show('obj-adv',this)">Métodos Avanzados <span class="badge b-adv">avanzado</span></div>
+      </aside>
+
+      <!-- SIDEBAR TS -->
+      <aside id="sb-ts" style="display:none">
+        <div class="s-label">TypeScript Core</div>
+        <div class="s-item active tsm" onclick="show('ts-types',this)">Tipos &amp; Interfaces <span class="badge b-ts">TS</span></div>
+        <div class="s-item" onclick="show('ts-gen',this)">Generics <span class="badge b-ts">TS</span></div>
+        <div class="s-item" onclick="show('ts-util',this)">Utility Types <span class="badge b-ts">TS</span></div>
+        <div class="s-label">React + Next.js</div>
+        <div class="s-item" onclick="show('ts-react',this)">Hooks &amp; Componentes <span class="badge b-ts">React</span></div>
+        <div class="s-item" onclick="show('ts-next',this)">Next.js Patterns <span class="badge b-ts">Next</span></div>
+        <div class="s-item" onclick="show('ts-async',this)">Async &amp; Fetching <span class="badge b-ts">Async</span></div>
+      </aside>
+
+      <!-- SIDEBAR EX -->
+      <aside id="sb-ex" style="display:none">
+        <div class="s-label">Ejercicios JS</div>
+        <div class="s-item active exm" onclick="showEx('ex-js',this)">Arrays &amp; Objetos <span class="badge b-ex">JS</span></div>
+        <div class="s-label">Ejercicios TS</div>
+        <div class="s-item" onclick="showEx('ex-ts',this)">TypeScript &amp; React <span class="badge b-ts">TS</span></div>
+      </aside>
+
+      <main>
+
+        <!-- ===== ARRAYS BÁSICO ===== -->
+        <div id="arr-bas" class="sec active">
+          <div class="sec-eye">JavaScript · Arrays</div>
+          <h1 class="sec-title"><span class="cg">Métodos Básicos</span> de Arrays</h1>
+          <p class="sec-desc">Los fundamentos para manipular listas. Estos métodos los usarás en el 80% de tu código.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">[ ]</div>
+              <div class="card-title">push · pop · unshift · shift</div><span class="tag t-bas">Básico</span>
+            </div>
+            <p class="card-desc">Añaden o eliminan elementos al principio o final. <strong>Mutan</strong> el array original.</p>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> frutas = [<span class="st">'manzana'</span>, <span class="st">'pera'</span>];
+  frutas.<span class="fn">push</span>(<span class="st">'uva'</span>);        <span class="cm">// ['manzana','pera','uva']</span>
+  <span class="kw">const</span> ultimo = frutas.<span class="fn">pop</span>();  <span class="cm">// 'uva'</span>
+  frutas.<span class="fn">unshift</span>(<span class="st">'kiwi'</span>);     <span class="cm">// ['kiwi','manzana','pera']</span>
+  <span class="kw">const</span> primero = frutas.<span class="fn">shift</span>(); <span class="cm">// 'kiwi'</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ig">?</div>
+              <div class="card-title">forEach · includes · indexOf · find · findIndex</div><span class="tag t-bas">Básico</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> nums = [<span class="nm">10</span>, <span class="nm">20</span>, <span class="nm">30</span>, <span class="nm">40</span>];
+  nums.<span class="fn">forEach</span>((n, i) => console.<span class="fn">log</span>(i, n));
+  nums.<span class="fn">includes</span>(<span class="nm">20</span>);      <span class="cm">// true</span>
+  nums.<span class="fn">indexOf</span>(<span class="nm">30</span>);       <span class="cm">// 2</span>
+  <span class="kw">const</span> users = [{ id:<span class="nm">1</span>, nombre:<span class="st">'Ana'</span> }, { id:<span class="nm">2</span>, nombre:<span class="st">'Luis'</span> }];
+  <span class="kw">const</span> user = users.<span class="fn">find</span>(u => u.id === <span class="nm">2</span>);      <span class="cm">// {id:2, nombre:'Luis'}</span>
+  <span class="kw">const</span> idx  = users.<span class="fn">findIndex</span>(u => u.id === <span class="nm">2</span>); <span class="cm">// 1</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">✂</div>
+              <div class="card-title">slice · splice</div><span class="tag t-bas">Básico</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> letras = [<span class="st">'a'</span>,<span class="st">'b'</span>,<span class="st">'c'</span>,<span class="st">'d'</span>,<span class="st">'e'</span>];
+  letras.<span class="fn">slice</span>(<span class="nm">1</span>, <span class="nm">3</span>);          <span class="cm">// ['b','c'] — NO muta</span>
+  letras.<span class="fn">slice</span>(-<span class="nm">2</span>);             <span class="cm">// ['d','e']</span>
+  letras.<span class="fn">splice</span>(<span class="nm">2</span>, <span class="nm">1</span>);          <span class="cm">// elimina 'c' — SÍ muta</span>
+  letras.<span class="fn">splice</span>(<span class="nm">1</span>, <span class="nm">0</span>, <span class="st">'X'</span>);    <span class="cm">// inserta 'X' en índice 1</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ig">+</div>
+              <div class="card-title">join · concat · spread · Array.from · isArray</div><span class="tag t-bas">Básico</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> a = [<span class="nm">1</span>,<span class="nm">2</span>], b = [<span class="nm">3</span>,<span class="nm">4</span>];
+  [...a, ...b];                     <span class="cm">// [1,2,3,4]</span>
+  [<span class="st">'Hola'</span>,<span class="st">'mundo'</span>].<span class="fn">join</span>(<span class="st">' '</span>);    <span class="cm">// 'Hola mundo'</span>
+  <span class="ty">Array</span>.<span class="fn">from</span>(<span class="st">'hola'</span>);              <span class="cm">// ['h','o','l','a']</span>
+  <span class="ty">Array</span>.<span class="fn">from</span>({length:<span class="nm">3</span>}, (_,i) => i); <span class="cm">// [0,1,2]</span>
+  <span class="ty">Array</span>.<span class="fn">isArray</span>([<span class="nm">1</span>,<span class="nm">2</span>]);           <span class="cm">// true</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== ARRAYS INTERMEDIO ===== -->
+        <div id="arr-mid" class="sec">
+          <div class="sec-eye">JavaScript · Arrays</div>
+          <h1 class="sec-title"><span class="cj">Métodos Intermedios</span> de Arrays</h1>
+          <p class="sec-desc">map, filter y reduce son la trinidad del trabajo moderno con datos.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">⟿</div>
+              <div class="card-title">map() — Transformar</div><span class="tag t-mid">Medio</span>
+            </div>
+            <p class="card-desc">Transforma cada elemento y retorna un nuevo array del mismo tamaño. No muta. Fundamental en React para renderizar listas.</p>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> precios = [<span class="nm">100</span>, <span class="nm">200</span>, <span class="nm">350</span>];
+  <span class="kw">const</span> conDesc = precios.<span class="fn">map</span>(p => p * <span class="nm">0.9</span>); <span class="cm">// [90,180,315]</span>
+  <span class="kw">const</span> productos = [
+    { nombre:<span class="st">'Camisa'</span>, precio:<span class="nm">25</span> },
+    { nombre:<span class="st">'Pantalón'</span>, precio:<span class="nm">50</span> }
+  ];
+  <span class="kw">const</span> etiquetas = productos.<span class="fn">map</span>(p => ({
+    ...p, etiqueta: <span class="st">`${p.nombre} — €${p.precio}`</span>, caro: p.precio > <span class="nm">30</span>
+  }));</pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ig">▽</div>
+              <div class="card-title">filter() — Filtrar</div><span class="tag t-mid">Medio</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> tareas = [
+    { id:<span class="nm">1</span>, texto:<span class="st">'Diseñar'</span>, done:<span class="kw">true</span>  },
+    { id:<span class="nm">2</span>, texto:<span class="st">'Codear'</span>,  done:<span class="kw">false</span> },
+    { id:<span class="nm">3</span>, texto:<span class="st">'Testear'</span>, done:<span class="kw">false</span> },
+  ];
+  <span class="kw">const</span> pendientes = tareas.<span class="fn">filter</span>(t => !t.done);
+  <span class="kw">const</span> textos = tareas.<span class="fn">filter</span>(t => !t.done).<span class="fn">map</span>(t => t.texto);
+  <span class="cm">// ['Codear','Testear']</span>
+  <span class="kw">const</span> sinPrimera = tareas.<span class="fn">filter</span>(t => t.id !== <span class="nm">1</span>);</pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ir">∑</div>
+              <div class="card-title">reduce() — Acumular</div><span class="tag t-mid">Medio</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> nums = [<span class="nm">1</span>,<span class="nm">2</span>,<span class="nm">3</span>,<span class="nm">4</span>,<span class="nm">5</span>];
+  <span class="kw">const</span> suma = nums.<span class="fn">reduce</span>((acc, n) => acc + n, <span class="nm">0</span>); <span class="cm">// 15</span>
+  <span class="kw">const</span> items = [
+    { tipo:<span class="st">'fruta'</span>, nombre:<span class="st">'manzana'</span> },
+    { tipo:<span class="st">'vegetal'</span>, nombre:<span class="st">'zanahoria'</span> },
+    { tipo:<span class="st">'fruta'</span>, nombre:<span class="st">'pera'</span> },
+  ];
+  <span class="kw">const</span> porTipo = items.<span class="fn">reduce</span>((acc, item) => {
+    <span class="kw">if</span> (!acc[item.tipo]) acc[item.tipo] = [];
+    acc[item.tipo].<span class="fn">push</span>(item.nombre);
+    <span class="kw">return</span> acc;
+  }, {});
+  <span class="cm">// { fruta:['manzana','pera'], vegetal:['zanahoria'] }</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">⇅</div>
+              <div class="card-title">sort · some · every</div><span class="tag t-mid">Medio</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> nums = [<span class="nm">3</span>,<span class="nm">1</span>,<span class="nm">4</span>,<span class="nm">1</span>,<span class="nm">5</span>];
+  [...nums].<span class="fn">sort</span>((a,b) => a-b); <span class="cm">// [1,1,3,4,5] asc</span>
+  [...nums].<span class="fn">sort</span>((a,b) => b-a); <span class="cm">// [5,4,3,1,1] desc</span>
+  nums.<span class="fn">some</span>(n => n > <span class="nm">4</span>);         <span class="cm">// true</span>
+  nums.<span class="fn">every</span>(n => n > <span class="nm">0</span>);        <span class="cm">// true</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== ARRAYS AVANZADO ===== -->
+        <div id="arr-adv" class="sec">
+          <div class="sec-eye">JavaScript · Arrays</div>
+          <h1 class="sec-title"><span class="cr">Métodos Avanzados</span> de Arrays</h1>
+          <p class="sec-desc">flat, flatMap, Set, Map, groupBy y composición funcional.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ir">⇢</div>
+              <div class="card-title">flat · flatMap</div><span class="tag t-adv">Avanzado</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre>[<span class="nm">1</span>,[<span class="nm">2</span>,[<span class="nm">3</span>]]].<span class="fn">flat</span>();          <span class="cm">// [1,2,[3]]</span>
+  [<span class="nm">1</span>,[<span class="nm">2</span>,[<span class="nm">3</span>]]].<span class="fn">flat</span>(Infinity);  <span class="cm">// [1,2,3]</span>
+  <span class="kw">const</span> oraciones = [<span class="st">'Hola mundo'</span>, <span class="st">'JS es genial'</span>];
+  oraciones.<span class="fn">flatMap</span>(s => s.<span class="fn">split</span>(<span class="st">' '</span>));
+  <span class="cm">// ['Hola','mundo','JS','es','genial']</span>
+  <span class="kw">const</span> posts = [
+    { titulo:<span class="st">'React'</span>, tags:[<span class="st">'js'</span>,<span class="st">'frontend'</span>] },
+    { titulo:<span class="st">'TS'</span>,    tags:[<span class="st">'ts'</span>,<span class="st">'js'</span>] },
+  ];
+  posts.<span class="fn">flatMap</span>(p => p.tags); <span class="cm">// ['js','frontend','ts','js']</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ir">⊞</div>
+              <div class="card-title">Set · Map · eliminar duplicados</div><span class="tag t-adv">Avanzado</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> tags = [<span class="st">'js'</span>,<span class="st">'ts'</span>,<span class="st">'js'</span>,<span class="st">'react'</span>];
+  <span class="kw">const</span> unicos = [...<span class="kw">new</span> <span class="fn">Set</span>(tags)]; <span class="cm">// ['js','ts','react']</span>
+  <span class="kw">const</span> dedup = (arr, key) =>
+    [...<span class="kw">new</span> <span class="fn">Map</span>(arr.<span class="fn">map</span>(i => [i[key], i])).<span class="fn">values</span>()];
+  <span class="ty">Object</span>.<span class="fn">groupBy</span>(
+    [{ cat:<span class="st">'ropa'</span>, n:<span class="st">'camisa'</span> }, { cat:<span class="st">'tech'</span>, n:<span class="st">'laptop'</span> }],
+    p => p.cat
+  ); <span class="cm">// { ropa:[...], tech:[...] }</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ip">∘</div>
+              <div class="card-title">Composición funcional — pipeline</div><span class="tag t-adv">Avanzado</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> ventas = [
+    { vendedor:<span class="st">'Ana'</span>,  region:<span class="st">'norte'</span>, monto:<span class="nm">300</span> },
+    { vendedor:<span class="st">'Luis'</span>, region:<span class="st">'sur'</span>,   monto:<span class="nm">150</span> },
+    { vendedor:<span class="st">'Ana'</span>,  region:<span class="st">'norte'</span>, monto:<span class="nm">450</span> },
+  ];
+  <span class="kw">const</span> reporte = ventas
+    .<span class="fn">filter</span>(v => v.region === <span class="st">'norte'</span>)
+    .<span class="fn">reduce</span>((acc, v) => {
+      <span class="kw">const</span> e = acc.<span class="fn">find</span>(a => a.vendedor === v.vendedor);
+      <span class="kw">if</span> (e) e.total += v.monto;
+      <span class="kw">else</span> acc.<span class="fn">push</span>({ vendedor: v.vendedor, total: v.monto });
+      <span class="kw">return</span> acc;
+    }, [])
+    .<span class="fn">sort</span>((a,b) => b.total - a.total)
+    .<span class="fn">map</span>(a => <span class="st">`${a.vendedor}: €${a.total}`</span>);
+  <span class="cm">// ['Ana: €750']</span></pre>
+            </div>
+            <div class="out"><span class="out-lbl">resultado</span>['Ana: €750']</div>
+          </div>
+        </div>
+
+        <!-- ===== OBJETOS BÁSICO ===== -->
+        <div id="obj-bas" class="sec">
+          <div class="sec-eye">JavaScript · Objetos</div>
+          <h1 class="sec-title"><span class="cg">Métodos Básicos</span> de Objetos</h1>
+          <p class="sec-desc">Acceso, creación y transformación básica de objetos.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">{}</div>
+              <div class="card-title">keys · values · entries · fromEntries</div><span class="tag t-bas">Básico</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> persona = { nombre:<span class="st">'Ana'</span>, edad:<span class="nm">28</span>, ciudad:<span class="st">'Madrid'</span> };
+  <span class="ty">Object</span>.<span class="fn">keys</span>(persona);    <span class="cm">// ['nombre','edad','ciudad']</span>
+  <span class="ty">Object</span>.<span class="fn">values</span>(persona);  <span class="cm">// ['Ana',28,'Madrid']</span>
+  <span class="ty">Object</span>.<span class="fn">entries</span>(persona).<span class="fn">forEach</span>(([k,v]) => console.<span class="fn">log</span>(<span class="st">`${k}: ${v}`</span>));
+  <span class="kw">const</span> mayus = <span class="ty">Object</span>.<span class="fn">fromEntries</span>(
+    <span class="ty">Object</span>.<span class="fn">entries</span>(persona).<span class="fn">map</span>(([k,v]) => [k, <span class="ty">String</span>(v).<span class="fn">toUpperCase</span>()])
+  );</pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ig">⊕</div>
+              <div class="card-title">Spread · Destructuring · Optional chaining</div><span class="tag t-bas">Básico</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> user = { id:<span class="nm">1</span>, nombre:<span class="st">'Ana'</span>, rol:<span class="st">'admin'</span> };
+  <span class="kw">const</span> actualizado = { ...user, nombre:<span class="st">'Ana García'</span> };
+  <span class="kw">const</span> { rol, ...sinRol } = user;        <span class="cm">// elimina rol</span>
+  <span class="kw">const</span> { nombre: alias, rol = <span class="st">'viewer'</span> } = user;
+  <span class="kw">const</span> datos = { config: <span class="kw">null</span> };
+  datos?.config?.tema;              <span class="cm">// undefined — no lanza error</span>
+  datos?.config?.tema ?? <span class="st">'dark'</span>;  <span class="cm">// 'dark'</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== OBJETOS INTERMEDIO ===== -->
+        <div id="obj-mid" class="sec">
+          <div class="sec-eye">JavaScript · Objetos</div>
+          <h1 class="sec-title"><span class="cj">Métodos Intermedios</span> de Objetos</h1>
+          <p class="sec-desc">Clonación profunda, fusión, getters y setters.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ij">⊡</div>
+              <div class="card-title">structuredClone · Object.assign</div><span class="tag t-mid">Medio</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> config = { db: { host:<span class="st">'localhost'</span>, port:<span class="nm">5432</span> } };
+  <span class="kw">const</span> shallow = { ...config };
+  shallow.db.host = <span class="st">'prod'</span>; <span class="cm">// ❌ también cambia config!</span>
+  <span class="kw">const</span> deep = <span class="fn">structuredClone</span>(config);
+  deep.db.host = <span class="st">'prod'</span>;   <span class="cm">// ✅ config intacto</span>
+  <span class="kw">const</span> merged = <span class="ty">Object</span>.<span class="fn">assign</span>({},
+    { tema:<span class="st">'dark'</span>, idioma:<span class="st">'es'</span> },
+    { tema:<span class="st">'light'</span> }
+  ); <span class="cm">// { tema:'light', idioma:'es' }</span></pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ig">get/set</div>
+              <div class="card-title">Getters y Setters</div><span class="tag t-mid">Medio</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> persona = {
+    nombre:<span class="st">'Ana'</span>, apellido:<span class="st">'García'</span>,
+    <span class="kw">get</span> <span class="fn">nombreCompleto</span>() { <span class="kw">return</span> <span class="st">`${this.nombre} ${this.apellido}`</span>; },
+    <span class="kw">set</span> <span class="fn">nombreCompleto</span>(val) { [this.nombre, this.apellido] = val.<span class="fn">split</span>(<span class="st">' '</span>); }
+  };
+  persona.nombreCompleto;           <span class="cm">// 'Ana García'</span>
+  persona.nombreCompleto = <span class="st">'Luis Pérez'</span>;
+  persona.nombre;                   <span class="cm">// 'Luis'</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== OBJETOS AVANZADO ===== -->
+        <div id="obj-adv" class="sec">
+          <div class="sec-eye">JavaScript · Objetos</div>
+          <h1 class="sec-title"><span class="cr">Métodos Avanzados</span> de Objetos</h1>
+          <p class="sec-desc">freeze, seal, defineProperty, Proxy y Object.create.</p>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ir">⊛</div>
+              <div class="card-title">freeze · seal · defineProperty</div><span class="tag t-adv">Avanzado</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> CFG = <span class="ty">Object</span>.<span class="fn">freeze</span>({ api:<span class="st">'https://api.com'</span>, v:<span class="nm">2</span> });
+  CFG.v = <span class="nm">3</span>; <span class="cm">// silently fails</span>
+  <span class="kw">const</span> obj = <span class="ty">Object</span>.<span class="fn">seal</span>({ nombre:<span class="st">'Ana'</span> });
+  obj.nombre = <span class="st">'Luis'</span>; <span class="cm">// ✅ cambia valor</span>
+  obj.edad   = <span class="nm">30</span>;    <span class="cm">// ❌ no añade</span>
+  <span class="kw">const</span> user = {};
+  <span class="ty">Object</span>.<span class="fn">defineProperty</span>(user, <span class="st">'id'</span>, {
+    <span class="kw">get</span>() { <span class="kw">return</span> <span class="st">'USR-001'</span>; },
+    enumerable:<span class="kw">true</span>, configurable:<span class="kw">false</span>, writable:<span class="kw">false</span>
+  });</pre>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon ip">⟡</div>
+              <div class="card-title">Proxy · Object.create</div><span class="tag t-adv">Avanzado</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">javascript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> persona = <span class="kw">new</span> <span class="fn">Proxy</span>({}, {
+    <span class="fn">set</span>(target, prop, value) {
+      <span class="kw">if</span> (prop === <span class="st">'edad'</span> && <span class="kw">typeof</span> value !== <span class="st">'number'</span>)
+        <span class="kw">throw new</span> <span class="fn">TypeError</span>(<span class="st">'edad debe ser número'</span>);
+      target[prop] = value; <span class="kw">return</span> <span class="kw">true</span>;
+    }
+  });
+  persona.edad = <span class="nm">25</span>;    <span class="cm">// ✅</span>
+  persona.edad = <span class="st">'25'</span>;  <span class="cm">// ❌ TypeError</span>
+  <span class="kw">const</span> animal = { <span class="fn">hablar</span>() { <span class="kw">return</span> <span class="st">`Soy ${this.nombre}`</span>; } };
+  <span class="kw">const</span> perro = <span class="ty">Object</span>.<span class="fn">create</span>(animal);
+  perro.nombre = <span class="st">'Rex'</span>;
+  perro.<span class="fn">hablar</span>(); <span class="cm">// 'Soy Rex'</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS TIPOS ===== -->
+        <div id="ts-types" class="sec">
+          <div class="sec-eye">TypeScript · Core</div>
+          <h1 class="sec-title"><span class="ct">Tipos</span> e <span class="ct">Interfaces</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">T</div>
+              <div class="card-title">type vs interface · as const · satisfies · keyof</div><span class="tag t-ts">TypeScript</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">interface</span> <span class="ty">User</span> {
+    id: <span class="ty">number</span>; nombre: <span class="ty">string</span>; email: <span class="ty">string</span>;
+    avatar?: <span class="ty">string</span>; <span class="kw">readonly</span> createdAt: <span class="ty">Date</span>;
+  }
+  <span class="kw">interface</span> <span class="ty">Admin</span> <span class="kw">extends</span> <span class="ty">User</span> { permisos: <span class="ty">string</span>[]; }
+  <span class="kw">type</span> <span class="ty">Status</span> = <span class="st">'activo'</span> | <span class="st">'inactivo'</span> | <span class="st">'pendiente'</span>;
+  <span class="kw">type</span> <span class="ty">UserWithStatus</span> = <span class="ty">User</span> & { status: <span class="ty">Status</span> };
+  <span class="kw">const</span> ROUTES = { home:<span class="st">'/'</span>, users:<span class="st">'/users'</span> } <span class="kw">as const</span>;
+  <span class="kw">type</span> <span class="ty">Route</span> = <span class="kw">typeof</span> ROUTES[<span class="kw">keyof typeof</span> ROUTES];
+  <span class="cm">// '/' | '/users'</span>
+  <span class="kw">const</span> cfg = { puerto:<span class="nm">3000</span> } <span class="kw">satisfies</span> { puerto: <span class="ty">number</span> };
+  cfg.puerto.<span class="fn">toFixed</span>(); <span class="cm">// ✅ TS sabe que es number</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS GENERICS ===== -->
+        <div id="ts-gen" class="sec">
+          <div class="sec-eye">TypeScript · Core</div>
+          <h1 class="sec-title"><span class="ct">Generics</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">⟨T⟩</div>
+              <div class="card-title">Funciones genéricas · fetch tipado · hook genérico</div><span class="tag t-ts">TypeScript</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">function</span> <span class="fn">primero</span><<span class="ty">T</span>>(arr: <span class="ty">T</span>[]): <span class="ty">T</span> | <span class="kw">undefined</span> { <span class="kw">return</span> arr[<span class="nm">0</span>]; }
+  <span class="kw">async function</span> <span class="fn">fetchData</span><<span class="ty">T</span>>(url: <span class="ty">string</span>): <span class="ty">Promise</span><<span class="ty">T</span>> {
+    <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(url);
+    <span class="kw">if</span> (!res.ok) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="st">`HTTP ${res.status}`</span>);
+    <span class="kw">return</span> res.<span class="fn">json</span>() <span class="kw">as</span> <span class="ty">Promise</span><<span class="ty">T</span>>;
+  }
+  <span class="kw">function</span> <span class="fn">useList</span><<span class="ty">T</span> <span class="kw">extends</span> { id: <span class="ty">number</span> }>() {
+    <span class="kw">const</span> [items, setItems] = <span class="fn">useState</span><<span class="ty">T</span>[]>([]);
+    <span class="kw">const</span> add    = (item: <span class="ty">T</span>) => setItems(p => [...p, item]);
+    <span class="kw">const</span> remove = (id: <span class="ty">number</span>) => setItems(p => p.<span class="fn">filter</span>(i => i.id !== id));
+    <span class="kw">const</span> update = (id: <span class="ty">number</span>, ch: <span class="ty">Partial</span><<span class="ty">T</span>>) =>
+      setItems(p => p.<span class="fn">map</span>(i => i.id === id ? { ...i, ...ch } : i));
+    <span class="kw">return</span> { items, add, remove, update };
+  }</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS UTILITY ===== -->
+        <div id="ts-util" class="sec">
+          <div class="sec-eye">TypeScript · Core</div>
+          <h1 class="sec-title"><span class="ct">Utility Types</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">⊘</div>
+              <div class="card-title">Partial · Required · Pick · Omit · Record · ReturnType · infer</div><span class="tag t-ts">TypeScript</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">type</span> <span class="ty">UserUpdate</span>  = <span class="ty">Partial</span><<span class="ty">User</span>>;
+  <span class="kw">type</span> <span class="ty">UserCard</span>    = <span class="ty">Pick</span><<span class="ty">User</span>, <span class="st">'nombre'</span> | <span class="st">'avatar'</span>>;
+  <span class="kw">type</span> <span class="ty">UserPublic</span>  = <span class="ty">Omit</span><<span class="ty">User</span>, <span class="st">'email'</span>>;
+  <span class="kw">type</span> <span class="ty">Cache</span>       = <span class="ty">Record</span><<span class="ty">string</span>, <span class="ty">User</span>>;
+  <span class="kw">type</span> <span class="ty">UserData</span>    = <span class="ty">Awaited</span><<span class="ty">ReturnType</span><<span class="kw">typeof</span> getUser>>;
+  <span class="kw">type</span> <span class="ty">UnwrapArr</span><<span class="ty">T</span>> = T <span class="kw">extends</span> (<span class="kw">infer</span> <span class="ty">U</span>)[] ? <span class="ty">U</span> : <span class="ty">T</span>;
+  <span class="kw">type</span> <span class="ty">A</span> = <span class="ty">UnwrapArr</span><<span class="ty">string</span>[]>;  <span class="cm">// string</span>
+  <span class="kw">type</span> <span class="ty">B</span> = <span class="ty">UnwrapArr</span><<span class="ty">number</span>>;    <span class="cm">// number</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS REACT ===== -->
+        <div id="ts-react" class="sec">
+          <div class="sec-eye">TypeScript · React</div>
+          <h1 class="sec-title"><span class="ct">Hooks</span> y <span class="ct">Componentes</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">⊛</div>
+              <div class="card-title">useState · useRef · useReducer · Eventos · children</div><span class="tag t-re">React</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> [user, setUser]   = <span class="fn">useState</span><<span class="ty">User</span> | <span class="kw">null</span>>(null);
+  <span class="kw">const</span> inputRef = <span class="fn">useRef</span><<span class="ty">HTMLInputElement</span>>(null);
+  inputRef.current?.<span class="fn">focus</span>();
+  <span class="kw">type</span> <span class="ty">Action</span> = { type:<span class="st">'inc'</span> } | { type:<span class="st">'reset'</span>; payload:<span class="ty">number</span> };
+  <span class="kw">function</span> <span class="fn">reducer</span>(s:<span class="ty">number</span>, a:<span class="ty">Action</span>):<span class="ty">number</span> {
+    <span class="kw">switch</span>(a.type){ <span class="kw">case</span> <span class="st">'inc'</span>: <span class="kw">return</span> s+<span class="nm">1</span>; <span class="kw">case</span> <span class="st">'reset'</span>: <span class="kw">return</span> a.payload; }
+  }
+  <span class="kw">const</span> onChange = (e: <span class="ty">ChangeEvent</span><<span class="ty">HTMLInputElement</span>>) => e.target.value;
+  <span class="kw">interface</span> <span class="ty">CardProps</span> { children: <span class="ty">React.ReactNode</span>; title: <span class="ty">string</span>; }
+  <span class="kw">interface</span> <span class="ty">InputProps</span> <span class="kw">extends</span> <span class="ty">ComponentProps</span><<span class="st">'input'</span>> { label: <span class="ty">string</span>; }</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS NEXT ===== -->
+        <div id="ts-next" class="sec">
+          <div class="sec-eye">TypeScript · Next.js</div>
+          <h1 class="sec-title"><span class="ct">Next.js</span> <span class="cp">Patterns</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">▲</div>
+              <div class="card-title">Page props · Server Actions · Route Handlers · Zod</div><span class="tag t-nx">Next.js</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">interface</span> <span class="ty">PageProps</span> { params: { id:<span class="ty">string</span> }; searchParams: Record<<span class="ty">string</span>, <span class="ty">string</span> | <span class="kw">undefined</span>>; }
+  <span class="kw">const</span> PostSchema = z.<span class="fn">object</span>({ titulo: z.<span class="fn">string</span>().<span class="fn">min</span>(<span class="nm">3</span>), contenido: z.<span class="fn">string</span>().<span class="fn">min</span>(<span class="nm">10</span>) });
+  <span class="kw">type</span> <span class="ty">PostInput</span> = z.<span class="fn">infer</span><<span class="kw">typeof</span> PostSchema>;
+  <span class="kw">type</span> <span class="ty">Result</span><<span class="ty">T</span>> = { ok:<span class="kw">true</span>; data:<span class="ty">T</span> } | { ok:<span class="kw">false</span>; error:<span class="ty">string</span> };
+  <span class="kw">export async function</span> <span class="fn">createPost</span>(raw: <span class="kw">unknown</span>): <span class="ty">Promise</span><<span class="ty">Result</span><<span class="ty">Post</span>>> {
+    <span class="kw">const</span> p = PostSchema.<span class="fn">safeParse</span>(raw);
+    <span class="kw">if</span> (!p.success) <span class="kw">return</span> { ok:<span class="kw">false</span>, error: p.error.<span class="fn">flatten</span>().<span class="fn">toString</span>() };
+    <span class="kw">const</span> post = <span class="kw">await</span> db.post.<span class="fn">create</span>(p.data);
+    <span class="fn">revalidatePath</span>(<span class="st">'/posts'</span>);
+    <span class="kw">return</span> { ok:<span class="kw">true</span>, data: post };
+  }
+  <span class="kw">export async function</span> <span class="fn">GET</span>(req:<span class="ty">NextRequest</span>, {params}:{params:{id:<span class="ty">string</span>}}) {
+    <span class="kw">const</span> user = <span class="kw">await</span> db.<span class="fn">findUser</span>(<span class="ty">Number</span>(params.id));
+    <span class="kw">if</span> (!user) <span class="kw">return</span> <span class="ty">NextResponse</span>.<span class="fn">json</span>({error:<span class="st">'Not found'</span>},{status:<span class="nm">404</span>});
+    <span class="kw">return</span> <span class="ty">NextResponse</span>.<span class="fn">json</span>(user);
+  }</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TS ASYNC ===== -->
+        <div id="ts-async" class="sec">
+          <div class="sec-eye">TypeScript · Async</div>
+          <h1 class="sec-title"><span class="ct">Async</span> y <span class="cp">Data Fetching</span></h1>
+          <div class="card">
+            <div class="card-h">
+              <div class="card-icon it">⟳</div>
+              <div class="card-title">Promise.all · allSettled · React Query · Patrón Result</div><span class="tag t-ts">TypeScript</span>
+            </div>
+            <div class="cb">
+              <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+              <pre><span class="kw">const</span> [users, posts] = <span class="kw">await</span> <span class="ty">Promise</span>.<span class="fn">all</span>([
+    <span class="fn">fetchData</span><<span class="ty">User</span>[]>(<span class="st">'/api/users'</span>), <span class="fn">fetchData</span><<span class="ty">Post</span>[]>(<span class="st">'/api/posts'</span>)
+  ]);
+  <span class="kw">const</span> { data, isLoading } = <span class="fn">useQuery</span><<span class="ty">User</span>[], <span class="ty">Error</span>>({
+    queryKey: [<span class="st">'users'</span>], queryFn: () => <span class="fn">fetchData</span><<span class="ty">User</span>[]>(<span class="st">'/api/users'</span>)
+  });
+  <span class="kw">async function</span> <span class="fn">safe</span><<span class="ty">T</span>>(fn: () => <span class="ty">Promise</span><<span class="ty">T</span>>): <span class="ty">Promise</span><<span class="ty">Result</span><<span class="ty">T</span>>> {
+    <span class="kw">try</span> { <span class="kw">return</span> { ok:<span class="kw">true</span>, data: <span class="kw">await</span> <span class="fn">fn</span>() }; }
+    <span class="kw">catch</span>(e) { <span class="kw">return</span> { ok:<span class="kw">false</span>, error: (e <span class="kw">as</span> <span class="ty">Error</span>).message }; }
+  }</pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== EJERCICIOS JS ===== -->
+        <div id="ex-js" class="sec">
+          <div class="sec-eye">Ejercicios · JavaScript</div>
+          <h1 class="sec-title"><span class="cr">Practica</span> Arrays &amp; Objetos</h1>
+          <p class="sec-desc">Resuelve cada ejercicio antes de ver la solución. Abre el desplegable de explicación para entender el proceso.</p>
+
+          <div class="ex-filter">
+            <button class="ex-filter-btn on-all" onclick="filterEx('all',this)">Todos</button>
+            <button class="ex-filter-btn" onclick="filterEx('bas',this)">Básico</button>
+            <button class="ex-filter-btn" onclick="filterEx('mid',this)">Intermedio</button>
+            <button class="ex-filter-btn" onclick="filterEx('adv',this)">Avanzado</button>
+          </div>
+
+          <!-- EJ 1 -->
+          <div class="ex-card" data-level="bas">
+            <div class="ex-header">
+              <div class="ex-num bas">1</div>
+              <div class="ex-info">
+                <div class="ex-title">Invertir un array sin usar .reverse()</div>
+                <div class="ex-desc">Dado un array de números, devuelve uno nuevo con los elementos en orden inverso. No mutes el original.</div>
+                <div class="ex-tags"><span class="tag t-bas">Básico</span><span class="tag t-bas">Arrays</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> nums = [<span class="nm">1</span>, <span class="nm">2</span>, <span class="nm">3</span>, <span class="nm">4</span>, <span class="nm">5</span>];
+  
+  <span class="kw">function</span> <span class="fn">invertir</span>(arr) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  console.<span class="fn">log</span>(<span class="fn">invertir</span>(nums)); <span class="cm">// [5,4,3,2,1]</span>
+  console.<span class="fn">log</span>(nums);           <span class="cm">// [1,2,3,4,5] — sin cambios</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-1')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-1')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-1" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">invertir</span>(arr) {
+    <span class="kw">return</span> [...arr].<span class="fn">reduce</span>((acc, item) => [item, ...acc], []);
+  }
+  
+  <span class="cm">// Alternativa con slice + sort:</span>
+  <span class="kw">const</span> invertir2 = arr => arr.<span class="fn">slice</span>().<span class="fn">sort</span>((_, __, i) => -<span class="nm">1</span>);
+  
+  <span class="cm">// Alternativa con índices:</span>
+  <span class="kw">const</span> invertir3 = arr =>
+    <span class="ty">Array</span>.<span class="fn">from</span>({ length: arr.length }, (_, i) => arr[arr.length - <span class="nm">1</span> - i]);</pre>
+                </div>
+              </div>
+              <div id="exp-1" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>¿Por qué usar [...arr] o slice()?</strong><br>
+                  Si hicieras <code>arr.sort()</code> directamente estarías mutando el original. Hacer una copia primero con spread o <code>slice()</code> es el patrón correcto para trabajar de forma inmutable.<br><br>
+                  <strong>La solución con reduce:</strong><br>
+                  <ul>
+                    <li>Empieza con un acumulador vacío <code>[]</code></li>
+                    <li>En cada iteración pone el elemento <strong>al inicio</strong> del acumulador con <code>[item, ...acc]</code></li>
+                    <li>El resultado natural es el array invertido</li>
+                  </ul>
+                  <strong>Concepto clave:</strong> <code>Array.from({length: n}, fn)</code> crea un array de longitud <code>n</code> llenándolo con la función. El segundo parámetro recibe <code>(valor, índice)</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 2 -->
+          <div class="ex-card" data-level="bas">
+            <div class="ex-header">
+              <div class="ex-num bas">2</div>
+              <div class="ex-info">
+                <div class="ex-title">Contar frecuencia de palabras</div>
+                <div class="ex-desc">Dada una frase, devuelve un objeto donde cada clave es una palabra y su valor es cuántas veces aparece.</div>
+                <div class="ex-tags"><span class="tag t-bas">Básico</span><span class="tag t-bas">Objetos</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> frase = <span class="st">'el gato y el perro y el pez'</span>;
+  
+  <span class="kw">function</span> <span class="fn">frecuencia</span>(texto) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="fn">frecuencia</span>(frase);
+  <span class="cm">// { el:3, gato:1, y:2, perro:1, pez:1 }</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-2')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-2')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-2" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">frecuencia</span>(texto) {
+    <span class="kw">return</span> texto.<span class="fn">split</span>(<span class="st">' '</span>).<span class="fn">reduce</span>((acc, palabra) => {
+      acc[palabra] = (acc[palabra] || <span class="nm">0</span>) + <span class="nm">1</span>;
+      <span class="kw">return</span> acc;
+    }, {});
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-2" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>El patrón <code>acc[key] = (acc[key] || 0) + 1</code></strong> es uno de los más usados en JS.<br><br>
+                  <ul>
+                    <li>Si <code>acc[palabra]</code> no existe, devuelve <code>undefined</code>, que es falsy → usa <code>0</code></li>
+                    <li>Si ya existe, usa ese valor y le suma 1</li>
+                  </ul>
+                  <strong>Proceso mental:</strong> siempre que quieras <em>agrupar o contar</em> cosas en un objeto, <code>reduce</code> con un <code>{}</code> como valor inicial es la herramienta natural.<br><br>
+                  <strong>Alternativa moderna:</strong> podrías usar <code>Map</code> en lugar de un objeto si las claves no son strings simples.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 3 -->
+          <div class="ex-card" data-level="mid">
+            <div class="ex-header">
+              <div class="ex-num mid">3</div>
+              <div class="ex-info">
+                <div class="ex-title">Pipeline: usuarios activos con más de X pedidos</div>
+                <div class="ex-desc">Filtra usuarios activos, calcula el total de pedidos de cada uno, y devuelve solo los que superan un mínimo, ordenados de mayor a menor.</div>
+                <div class="ex-tags"><span class="tag t-mid">Intermedio</span><span class="tag t-mid">map · filter · sort</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> usuarios = [
+    { nombre:<span class="st">'Ana'</span>,  activo:<span class="kw">true</span>,  pedidos:[<span class="nm">10</span>,<span class="nm">20</span>,<span class="nm">30</span>] },
+    { nombre:<span class="st">'Luis'</span>, activo:<span class="kw">false</span>, pedidos:[<span class="nm">5</span>,<span class="nm">15</span>] },
+    { nombre:<span class="st">'Sara'</span>, activo:<span class="kw">true</span>,  pedidos:[<span class="nm">50</span>,<span class="nm">25</span>,<span class="nm">10</span>] },
+    { nombre:<span class="st">'Juan'</span>, activo:<span class="kw">true</span>,  pedidos:[<span class="nm">2</span>,<span class="nm">3</span>] },
+  ];
+  
+  <span class="kw">function</span> <span class="fn">topUsuarios</span>(users, minTotal) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="fn">topUsuarios</span>(usuarios, <span class="nm">50</span>);
+  <span class="cm">// [{ nombre:'Sara', total:85 }, { nombre:'Ana', total:60 }]</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-3')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-3')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-3" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">topUsuarios</span>(users, minTotal) {
+    <span class="kw">return</span> users
+      .<span class="fn">filter</span>(u => u.activo)
+      .<span class="fn">map</span>(u => ({
+        nombre: u.nombre,
+        total: u.pedidos.<span class="fn">reduce</span>((sum, p) => sum + p, <span class="nm">0</span>)
+      }))
+      .<span class="fn">filter</span>(u => u.total >= minTotal)
+      .<span class="fn">sort</span>((a, b) => b.total - a.total);
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-3" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Pipeline de 4 pasos:</strong>
+                  <ul>
+                    <li><code>filter(activo)</code> — elimina usuarios inactivos primero, reduce trabajo en los siguientes pasos</li>
+                    <li><code>map(...)</code> — transforma el shape: calcula el <code>total</code> usando <code>reduce</code> interno sobre <code>pedidos</code></li>
+                    <li><code>filter(total &gt;= min)</code> — segundo filtro ya con la nueva forma del objeto</li>
+                    <li><code>sort(b-a)</code> — orden descendente</li>
+                  </ul>
+                  <strong>Concepto clave:</strong> un <code>reduce</code> dentro de un <code>map</code> es un patrón muy común para agregar arrays anidados. Cada usuario tiene su propio subarray de pedidos que se colapsa a un número.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 4 -->
+          <div class="ex-card" data-level="mid">
+            <div class="ex-header">
+              <div class="ex-num mid">4</div>
+              <div class="ex-info">
+                <div class="ex-title">Aplanar y deduplicar tags de posts</div>
+                <div class="ex-desc">Dado un array de posts con tags, extrae todos los tags únicos en orden alfabético.</div>
+                <div class="ex-tags"><span class="tag t-mid">Intermedio</span><span class="tag t-mid">flatMap · Set</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> posts = [
+    { titulo:<span class="st">'React Hooks'</span>,  tags:[<span class="st">'react'</span>,<span class="st">'js'</span>,<span class="st">'hooks'</span>] },
+    { titulo:<span class="st">'TypeScript'</span>,   tags:[<span class="st">'ts'</span>,<span class="st">'js'</span>,<span class="st">'tipos'</span>] },
+    { titulo:<span class="st">'Next.js App'</span>,  tags:[<span class="st">'next'</span>,<span class="st">'react'</span>,<span class="st">'ts'</span>] },
+  ];
+  
+  <span class="kw">function</span> <span class="fn">tagsUnicos</span>(posts) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="fn">tagsUnicos</span>(posts);
+  <span class="cm">// ['hooks','js','next','react','ts','tipos']</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-4')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-4')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-4" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">tagsUnicos</span>(posts) {
+    <span class="kw">return</span> [...<span class="kw">new</span> <span class="fn">Set</span>(
+      posts.<span class="fn">flatMap</span>(p => p.tags)
+    )].<span class="fn">sort</span>();
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-4" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>3 operaciones en una línea:</strong>
+                  <ul>
+                    <li><code>flatMap(p => p.tags)</code> — extrae todos los tags y los aplana en un array plano (equivale a <code>map().flat(1)</code>)</li>
+                    <li><code>new Set(...)</code> — elimina duplicados automáticamente, ya que Set solo guarda valores únicos</li>
+                    <li><code>[...Set].sort()</code> — convierte de vuelta a array y ordena alfabéticamente</li>
+                  </ul>
+                  <strong>¿Por qué flatMap y no map?</strong> <code>map</code> devolvería <code>[['react','js'],['ts','js'],...]</code>, un array de arrays. <code>flatMap</code> lo aplana un nivel, dando <code>['react','js','ts',...]</code>.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 5 -->
+          <div class="ex-card" data-level="mid">
+            <div class="ex-header">
+              <div class="ex-num mid">5</div>
+              <div class="ex-info">
+                <div class="ex-title">Transformar array a objeto indexado por id</div>
+                <div class="ex-desc">Convierte un array de usuarios en un objeto donde la clave es el id. Patrón muy útil para lookups O(1) en lugar de O(n).</div>
+                <div class="ex-tags"><span class="tag t-mid">Intermedio</span><span class="tag t-mid">reduce · Object</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> users = [
+    { id:<span class="nm">1</span>, nombre:<span class="st">'Ana'</span>  },
+    { id:<span class="nm">2</span>, nombre:<span class="st">'Luis'</span> },
+    { id:<span class="nm">3</span>, nombre:<span class="st">'Sara'</span> },
+  ];
+  
+  <span class="kw">function</span> <span class="fn">indexarPorId</span>(arr) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="fn">indexarPorId</span>(users);
+  <span class="cm">// { 1:{id:1,nombre:'Ana'}, 2:{...}, 3:{...} }</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-5')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-5')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-5" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="cm">// Con reduce</span>
+  <span class="kw">const</span> indexarPorId = arr =>
+    arr.<span class="fn">reduce</span>((acc, item) => ({ ...acc, [item.id]: item }), {});
+  
+  <span class="cm">// Con Object.fromEntries (más legible)</span>
+  <span class="kw">const</span> indexarPorId2 = arr =>
+    <span class="ty">Object</span>.<span class="fn">fromEntries</span>(arr.<span class="fn">map</span>(item => [item.id, item]));
+  
+  <span class="cm">// Uso (lookup O(1)):</span>
+  <span class="kw">const</span> mapa = <span class="fn">indexarPorId</span>(users);
+  mapa[<span class="nm">2</span>]; <span class="cm">// { id:2, nombre:'Luis' } — instantáneo</span></pre>
+                </div>
+              </div>
+              <div id="exp-5" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>¿Por qué indexar?</strong> Buscar con <code>array.find(u => u.id === 2)</code> recorre todo el array → <strong>O(n)</strong>. Con un objeto indexado, <code>mapa[2]</code> es acceso directo → <strong>O(1)</strong>. En listas grandes la diferencia es enorme.<br><br>
+                  <strong><code>Object.fromEntries</code></strong> recibe un array de pares <code>[clave, valor]</code>. Es la forma más clara y moderna.<br><br>
+                  <strong>Computed property key <code>[item.id]</code>:</strong> los corchetes en la clave de un objeto literal evalúan la expresión como nombre de propiedad dinámica.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 6 -->
+          <div class="ex-card" data-level="adv">
+            <div class="ex-header">
+              <div class="ex-num adv">6</div>
+              <div class="ex-info">
+                <div class="ex-title">Deep merge de objetos</div>
+                <div class="ex-desc">Implementa un merge profundo: si dos objetos tienen una clave en común con valor objeto, se deben fusionar recursivamente en lugar de sobreescribirse.</div>
+                <div class="ex-tags"><span class="tag t-adv">Avanzado</span><span class="tag t-adv">Recursividad · Objetos</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">const</span> base   = { a:<span class="nm">1</span>, b:{ x:<span class="nm">10</span>, y:<span class="nm">20</span> }, c:<span class="nm">3</span> };
+  <span class="kw">const</span> override = { b:{ y:<span class="nm">99</span>, z:<span class="nm">30</span> }, d:<span class="nm">4</span> };
+  
+  <span class="kw">function</span> <span class="fn">deepMerge</span>(target, source) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="fn">deepMerge</span>(base, override);
+  <span class="cm">// { a:1, b:{ x:10, y:99, z:30 }, c:3, d:4 }</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-6')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-6')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-6" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">deepMerge</span>(target, source) {
+    <span class="kw">const</span> isObj = v => v && <span class="kw">typeof</span> v === <span class="st">'object'</span> && !<span class="ty">Array</span>.<span class="fn">isArray</span>(v);
+    <span class="kw">const</span> result = { ...target };
+  
+    <span class="ty">Object</span>.<span class="fn">keys</span>(source).<span class="fn">forEach</span>(key => {
+      <span class="kw">if</span> (<span class="fn">isObj</span>(source[key]) && <span class="fn">isObj</span>(target[key])) {
+        result[key] = <span class="fn">deepMerge</span>(target[key], source[key]);
+      } <span class="kw">else</span> {
+        result[key] = source[key];
+      }
+    });
+  
+    <span class="kw">return</span> result;
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-6" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Por qué el spread no es suficiente:</strong> <code>{...base, ...override}</code> sobreescribe <code>b</code> completamente con el valor de override. Se pierde <code>x:10</code>.<br><br>
+                  <strong>Lógica recursiva:</strong>
+                  <ul>
+                    <li>Para cada clave en <code>source</code>, comprueba si <strong>ambos valores son objetos planos</strong></li>
+                    <li>Si sí → llama a <code>deepMerge</code> recursivamente en ese subobjeto</li>
+                    <li>Si no → simplemente asigna el valor de <code>source</code> (sobreescribe)</li>
+                  </ul>
+                  <strong>Nota importante:</strong> los arrays se tratan como valores primitivos (no se mergean elemento a elemento). Se usa <code>Array.isArray</code> para excluirlos del merge profundo.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ 7 -->
+          <div class="ex-card" data-level="adv">
+            <div class="ex-header">
+              <div class="ex-num adv">7</div>
+              <div class="ex-info">
+                <div class="ex-title">Implementar un memoize genérico</div>
+                <div class="ex-desc">Crea una función <code>memoize</code> que cachee los resultados de otra función según sus argumentos. Si se llama con los mismos argumentos, devuelve el resultado cacheado sin recalcular.</div>
+                <div class="ex-tags"><span class="tag t-adv">Avanzado</span><span class="tag t-adv">Closures · Map</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">function</span> <span class="fn">memoize</span>(fn) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="kw">const</span> factorial = <span class="fn">memoize</span>(n => {
+    console.<span class="fn">log</span>(<span class="st">`calculando ${n}`</span>);
+    <span class="kw">return</span> n <= <span class="nm">1</span> ? <span class="nm">1</span> : n * <span class="fn">factorial</span>(n - <span class="nm">1</span>);
+  });
+  
+  <span class="fn">factorial</span>(<span class="nm">5</span>); <span class="cm">// calcula 5→4→3→2→1</span>
+  <span class="fn">factorial</span>(<span class="nm">5</span>); <span class="cm">// retorna desde caché, sin logs</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-7')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-7')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-7" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">solución</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">memoize</span>(fn) {
+    <span class="kw">const</span> cache = <span class="kw">new</span> <span class="fn">Map</span>();
+  
+    <span class="kw">return function</span>(...args) {
+      <span class="kw">const</span> key = <span class="ty">JSON</span>.<span class="fn">stringify</span>(args);
+  
+      <span class="kw">if</span> (cache.<span class="fn">has</span>(key)) {
+        <span class="kw">return</span> cache.<span class="fn">get</span>(key);
+      }
+  
+      <span class="kw">const</span> result = fn.<span class="fn">apply</span>(<span class="kw">this</span>, args);
+      cache.<span class="fn">set</span>(key, result);
+      <span class="kw">return</span> result;
+    };
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-7" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Patrón closure:</strong> la función devuelta por <code>memoize</code> "recuerda" el <code>cache</code> (Map) gracias al closure. Cada función memoizada tiene su propio Map privado.<br><br>
+                  <strong>¿Por qué Map y no {}?</strong> Map tiene mejor rendimiento para inserciones/lecturas frecuentes, tiene método <code>.has()</code> nativo, y no tiene conflictos con claves como <code>__proto__</code>.<br><br>
+                  <strong><code>JSON.stringify(args)</code></strong> convierte los argumentos en una clave string única. Funciona bien para primitivos. Para objetos complejos como argumentos, necesitarías una función de hash más sofisticada.<br><br>
+                  <strong>Usos reales:</strong> <code>useMemo</code> de React es exactamente este patrón aplicado a componentes.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== EJERCICIOS TS ===== -->
+        <div id="ex-ts" class="sec">
+          <div class="sec-eye">Ejercicios · TypeScript</div>
+          <h1 class="sec-title"><span class="ct">Practica</span> TypeScript &amp; React</h1>
+          <p class="sec-desc">Ejercicios de tipado real para proyectos con React y Next.js.</p>
+
+          <div class="ex-filter">
+            <button class="ex-filter-btn on-all" onclick="filterEx('all',this)">Todos</button>
+            <button class="ex-filter-btn" onclick="filterEx('bas',this)">Básico</button>
+            <button class="ex-filter-btn" onclick="filterEx('mid',this)">Intermedio</button>
+            <button class="ex-filter-btn" onclick="filterEx('adv',this)">Avanzado</button>
+          </div>
+
+          <!-- EJ TS1 -->
+          <div class="ex-card" data-level="bas">
+            <div class="ex-header">
+              <div class="ex-num ts">T1</div>
+              <div class="ex-info">
+                <div class="ex-title">Tipar props de un componente de tarjeta</div>
+                <div class="ex-desc">Define la interface de props para un componente ProductCard que muestra nombre, precio, imagen opcional y un callback de compra.</div>
+                <div class="ex-tags"><span class="tag t-bas">Básico</span><span class="tag t-ts">TypeScript</span><span class="tag t-re">React</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="cm">// Define ProductCardProps y el componente</span>
+  
+  <span class="kw">interface</span> <span class="ty">ProductCardProps</span> {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="kw">function</span> <span class="fn">ProductCard</span>(props: <span class="ty">ProductCardProps</span>) {
+    <span class="kw">return</span> <span class="kw">null</span>; <span class="cm">// implementar</span>
+  }
+  
+  <span class="cm">// Debe funcionar así:</span>
+  <span class="cm">// &lt;ProductCard nombre="Laptop" precio={999} onComprar={() => {}} /&gt;</span>
+  <span class="cm">// &lt;ProductCard nombre="Mouse" precio={29} imagen="/mouse.jpg" onComprar={handleBuy} /&gt;</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-t1')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-t1')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-t1" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">interface</span> <span class="ty">ProductCardProps</span> {
+    nombre:     <span class="ty">string</span>;
+    precio:     <span class="ty">number</span>;
+    imagen?:    <span class="ty">string</span>;          <span class="cm">// opcional</span>
+    onComprar:  () => <span class="ty">void</span>;      <span class="cm">// callback sin args</span>
+    disabled?:  <span class="ty">boolean</span>;         <span class="cm">// bonus: deshabilitar</span>
+    children?:  <span class="ty">React.ReactNode</span>; <span class="cm">// bonus: contenido extra</span>
+  }
+  
+  <span class="kw">function</span> <span class="fn">ProductCard</span>({ nombre, precio, imagen, onComprar, disabled = <span class="kw">false</span> }: <span class="ty">ProductCardProps</span>) {
+    <span class="kw">return</span> (
+      &lt;div className=<span class="st">"card"</span>&gt;
+        {imagen && &lt;img src={imagen} alt={nombre} /&gt;}
+        &lt;h3&gt;{nombre}&lt;/h3&gt;
+        &lt;p&gt;€{precio}&lt;/p&gt;
+        &lt;button onClick={onComprar} disabled={disabled}&gt;
+          Comprar
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-t1" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Reglas para tipar props:</strong>
+                  <ul>
+                    <li>Usa <code>?</code> para props opcionales. TS las convierte en <code>tipo | undefined</code></li>
+                    <li>Los callbacks se tipan como funciones: <code>() => void</code> para sin retorno, <code>(id: number) => void</code> si recibe argumentos</li>
+                    <li><code>React.ReactNode</code> es el tipo más amplio para <code>children</code>: acepta JSX, strings, números, arrays, null</li>
+                  </ul>
+                  <strong>Valor por defecto en destructuring:</strong> <code>disabled = false</code> en los parámetros permite no pasarlo y tener un valor por defecto sin necesidad de lógica extra.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ TS2 -->
+          <div class="ex-card" data-level="bas">
+            <div class="ex-header">
+              <div class="ex-num ts">T2</div>
+              <div class="ex-info">
+                <div class="ex-title">Usar Partial y Omit para formularios</div>
+                <div class="ex-desc">Tienes un tipo User completo. Crea los tipos para: un formulario de creación (sin id ni createdAt) y un formulario de edición (todos los campos opcionales excepto id).</div>
+                <div class="ex-tags"><span class="tag t-bas">Básico</span><span class="tag t-ts">Utility Types</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">interface</span> <span class="ty">User</span> {
+    id:        <span class="ty">number</span>;
+    nombre:    <span class="ty">string</span>;
+    email:     <span class="ty">string</span>;
+    rol:       <span class="st">'admin'</span> | <span class="st">'user'</span>;
+    createdAt: <span class="ty">Date</span>;
+  }
+  
+  <span class="cm">// Tipo para el formulario de creación (sin id ni createdAt)</span>
+  <span class="kw">type</span> <span class="ty">CreateUserForm</span> = <span class="cm">/* tu código */</span>;
+  
+  <span class="cm">// Tipo para edición (id obligatorio, resto opcional)</span>
+  <span class="kw">type</span> <span class="ty">UpdateUserForm</span> = <span class="cm">/* tu código */</span>;</pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-t2')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-t2')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-t2" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="cm">// Omit → quita id y createdAt del tipo</span>
+  <span class="kw">type</span> <span class="ty">CreateUserForm</span> = <span class="ty">Omit</span><<span class="ty">User</span>, <span class="st">'id'</span> | <span class="st">'createdAt'</span>>;
+  <span class="cm">// { nombre: string; email: string; rol: 'admin'|'user' }</span>
+  
+  <span class="cm">// id fijo + resto opcional con Partial+Omit</span>
+  <span class="kw">type</span> <span class="ty">UpdateUserForm</span> = Pick<<span class="ty">User</span>, <span class="st">'id'</span>> & <span class="ty">Partial</span><<span class="ty">Omit</span><<span class="ty">User</span>, <span class="st">'id'</span> | <span class="st">'createdAt'</span>>>;
+  <span class="cm">// { id: number; nombre?: string; email?: string; rol?: 'admin'|'user' }</span>
+  
+  <span class="cm">// Uso:</span>
+  <span class="kw">const</span> crear: <span class="ty">CreateUserForm</span> = { nombre:<span class="st">'Ana'</span>, email:<span class="st">'<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f5e515e7f47115c5052">[email&#160;protected]</a>'</span>, rol:<span class="st">'user'</span> };
+  <span class="kw">const</span> editar: <span class="ty">UpdateUserForm</span> = { id:<span class="nm">1</span>, nombre:<span class="st">'Ana García'</span> }; <span class="cm">// solo cambia nombre</span></pre>
+                </div>
+              </div>
+              <div id="exp-t2" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Composición de utility types:</strong> la clave está en combinarlos con <code>&</code> (intersección).<br><br>
+                  <ul>
+                    <li><code>Pick&lt;User, 'id'&gt;</code> — extrae solo <code>{ id: number }</code></li>
+                    <li><code>Omit&lt;User, 'id' | 'createdAt'&gt;</code> — quita esos campos</li>
+                    <li><code>Partial&lt;...&gt;</code> — hace todos los campos opcionales</li>
+                    <li><code>A & B</code> — intersección: el objeto debe cumplir ambos tipos</li>
+                  </ul>
+                  <strong>Este patrón es el estándar</strong> para crear tipos de formulario en React sin duplicar la definición de User. Si cambia User, los tipos del formulario se actualizan automáticamente.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ TS3 -->
+          <div class="ex-card" data-level="mid">
+            <div class="ex-header">
+              <div class="ex-num ts">T3</div>
+              <div class="ex-info">
+                <div class="ex-title">Hook useLocalStorage tipado con genérico</div>
+                <div class="ex-desc">Crea un hook reutilizable que lea y escriba en localStorage, con tipo genérico para el valor almacenado y valor inicial por defecto.</div>
+                <div class="ex-tags"><span class="tag t-mid">Intermedio</span><span class="tag t-ts">Generics</span><span class="tag t-re">React</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">function</span> <span class="fn">useLocalStorage</span><<span class="ty">T</span>>(key: <span class="ty">string</span>, initialValue: <span class="ty">T</span>) {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="cm">// Debe funcionar así:</span>
+  <span class="kw">const</span> [tema, setTema]   = <span class="fn">useLocalStorage</span><<span class="ty">string</span>>(<span class="st">'tema'</span>, <span class="st">'dark'</span>);
+  <span class="kw">const</span> [prefs, setPrefs] = <span class="fn">useLocalStorage</span>(<span class="st">'prefs'</span>, { idioma:<span class="st">'es'</span>, notifs:<span class="kw">true</span> });
+  <span class="cm">// prefs se infiere como { idioma: string; notifs: boolean }</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-t3')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-t3')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-t3" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">function</span> <span class="fn">useLocalStorage</span><<span class="ty">T</span>>(key: <span class="ty">string</span>, initialValue: <span class="ty">T</span>): [<span class="ty">T</span>, (<span class="ty">value</span>: <span class="ty">T</span>) => <span class="ty">void</span>] {
+    <span class="kw">const</span> [stored, setStored] = <span class="fn">useState</span><<span class="ty">T</span>>(() => {
+      <span class="kw">try</span> {
+        <span class="kw">const</span> item = window.localStorage.<span class="fn">getItem</span>(key);
+        <span class="kw">return</span> item ? (<span class="ty">JSON</span>.<span class="fn">parse</span>(item) <span class="kw">as</span> <span class="ty">T</span>) : initialValue;
+      } <span class="kw">catch</span> {
+        <span class="kw">return</span> initialValue;
+      }
+    });
+  
+    <span class="kw">const</span> setValue = (value: <span class="ty">T</span>) => {
+      <span class="kw">try</span> {
+        setStored(value);
+        window.localStorage.<span class="fn">setItem</span>(key, <span class="ty">JSON</span>.<span class="fn">stringify</span>(value));
+      } <span class="kw">catch</span> (error) {
+        console.<span class="fn">error</span>(<span class="st">'Error guardando en localStorage:'</span>, error);
+      }
+    };
+  
+    <span class="kw">return</span> [stored, setValue];
+  }</pre>
+                </div>
+              </div>
+              <div id="exp-t3" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Retorno tipado como tupla:</strong> <code>[T, (value: T) => void]</code> garantiza que el setter solo acepta el mismo tipo que se leyó.<br><br>
+                  <strong>useState con función inicializadora:</strong> pasar una función <code>() => ...</code> a useState hace que se ejecute solo en el primer render. Ideal para lecturas de localStorage que no deben repetirse.<br><br>
+                  <strong>Inferencia automática:</strong> como el parámetro <code>initialValue</code> es de tipo <code>T</code>, TypeScript infiere <code>T</code> desde el valor que pases. No necesitas escribir el tipo explícitamente en la mayoría de los casos.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ TS4 -->
+          <div class="ex-card" data-level="mid">
+            <div class="ex-header">
+              <div class="ex-num ts">T4</div>
+              <div class="ex-info">
+                <div class="ex-title">Discriminated union para estados de carga</div>
+                <div class="ex-desc">Modela los estados de una petición HTTP (idle, loading, success, error) con una union discriminada y usa narrowing para acceder a los datos de forma segura.</div>
+                <div class="ex-tags"><span class="tag t-mid">Intermedio</span><span class="tag t-ts">Union Types</span><span class="tag t-re">React</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="cm">// Define los tipos de estado</span>
+  <span class="kw">type</span> <span class="ty">FetchState</span><<span class="ty">T</span>> = <span class="cm">/* tu código */</span>;
+  
+  <span class="cm">// Implementa el hook usando FetchState</span>
+  <span class="kw">function</span> <span class="fn">useFetch</span><<span class="ty">T</span>>(url: <span class="ty">string</span>): <span class="ty">FetchState</span><<span class="ty">T</span>> {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="cm">// El componente debe funcionar con narrowing:</span>
+  <span class="kw">const</span> state = <span class="fn">useFetch</span><<span class="ty">User</span>[]>(<span class="st">'/api/users'</span>);
+  <span class="kw">if</span> (state.status === <span class="st">'success'</span>) {
+    state.data; <span class="cm">// TS sabe que data: User[] existe aquí</span>
+  }</pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-t4')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-t4')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-t4" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">type</span> <span class="ty">FetchState</span><<span class="ty">T</span>> =
+    | { status: <span class="st">'idle'</span> }
+    | { status: <span class="st">'loading'</span> }
+    | { status: <span class="st">'success'</span>; data: <span class="ty">T</span> }
+    | { status: <span class="st">'error'</span>;   message: <span class="ty">string</span> };
+  
+  <span class="kw">function</span> <span class="fn">useFetch</span><<span class="ty">T</span>>(url: <span class="ty">string</span>): <span class="ty">FetchState</span><<span class="ty">T</span>> {
+    <span class="kw">const</span> [state, setState] = <span class="fn">useState</span><<span class="ty">FetchState</span><<span class="ty">T</span>>>({ status: <span class="st">'idle'</span> });
+  
+    <span class="fn">useEffect</span>(() => {
+      setState({ status: <span class="st">'loading'</span> });
+      <span class="fn">fetch</span>(url)
+        .<span class="fn">then</span>(r => r.<span class="fn">json</span>() <span class="kw">as</span> <span class="ty">Promise</span><<span class="ty">T</span>>)
+        .<span class="fn">then</span>(data => setState({ status: <span class="st">'success'</span>, data }))
+        .<span class="fn">catch</span>(e  => setState({ status: <span class="st">'error'</span>, message: e.message }));
+    }, [url]);
+  
+    <span class="kw">return</span> state;
+  }
+  
+  <span class="cm">// Uso con narrowing exhaustivo:</span>
+  <span class="kw">const</span> state = <span class="fn">useFetch</span><<span class="ty">User</span>[]>(<span class="st">'/api/users'</span>);
+  <span class="kw">if</span> (state.status === <span class="st">'loading'</span>) <span class="kw">return</span> &lt;Spinner /&gt;;
+  <span class="kw">if</span> (state.status === <span class="st">'error'</span>)   <span class="kw">return</span> &lt;Error msg={state.message} /&gt;;
+  <span class="kw">if</span> (state.status === <span class="st">'success'</span>) <span class="kw">return</span> &lt;List data={state.data} /&gt;;
+  <span class="kw">return</span> null;</pre>
+                </div>
+              </div>
+              <div id="exp-t4" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>Discriminated union:</strong> cada variante tiene un campo <code>status</code> con un literal único. TypeScript usa ese campo para hacer <strong>narrowing automático</strong>: dentro de <code>if(state.status === 'success')</code> sabe que <code>state.data</code> existe.<br><br>
+                  <strong>vs booleanos separados:</strong> usar <code>{ isLoading, isError, data, error }</code> (estilo React Query antiguo) permite estados imposibles como <code>isLoading: true</code> y <code>data: User[]</code> al mismo tiempo. La union discriminada los hace imposibles por construcción.<br><br>
+                  <strong>Exhaustividad:</strong> si añades un nuevo estado a la union, TypeScript te avisará en cada lugar donde no lo hayas manejado.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EJ TS5 -->
+          <div class="ex-card" data-level="adv">
+            <div class="ex-header">
+              <div class="ex-num ts">T5</div>
+              <div class="ex-info">
+                <div class="ex-title">Type-safe event emitter con generics</div>
+                <div class="ex-desc">Implementa un EventEmitter tipado donde los eventos y sus payloads estén definidos en un mapa de tipos. Solo se pueden emitir eventos con el payload correcto.</div>
+                <div class="ex-tags"><span class="tag t-adv">Avanzado</span><span class="tag t-ts">Generics · keyof</span></div>
+              </div>
+            </div>
+            <div class="ex-body">
+              <div class="ex-starter">
+                <span class="ex-starter-lbl">código de inicio</span>
+                <pre style="padding:0;border:none;background:transparent"><span class="kw">interface</span> <span class="ty">AppEvents</span> {
+    <span class="st">'user:login'</span>:   { userId: <span class="ty">number</span>; email: <span class="ty">string</span> };
+    <span class="st">'user:logout'</span>:  { userId: <span class="ty">number</span> };
+    <span class="st">'cart:updated'</span>: { items: <span class="ty">number</span>; total: <span class="ty">number</span> };
+  }
+  
+  <span class="kw">class</span> <span class="ty">TypedEmitter</span><<span class="ty">Events</span> <span class="kw">extends</span> Record<<span class="ty">string</span>, <span class="kw">unknown</span>>> {
+    <span class="cm">// tu código aquí</span>
+  }
+  
+  <span class="kw">const</span> emitter = <span class="kw">new</span> <span class="ty">TypedEmitter</span><<span class="ty">AppEvents</span>>();
+  <span class="cm">// TS debe autocompletar los nombres de evento</span>
+  <span class="cm">// y validar el payload en emit y on</span></pre>
+              </div>
+              <div class="toggles">
+                <button class="tog-btn" onclick="togglePanel(this,'sol-t5')"><span>✓ Ver solución</span><span class="tog-arrow">▼</span></button>
+                <button class="tog-btn" onclick="togglePanel(this,'exp-t5')"><span>💡 Explicación</span><span class="tog-arrow">▼</span></button>
+              </div>
+              <div id="sol-t5" class="tog-panel sol-panel">
+                <div class="cb" style="border:none;border-radius:0">
+                  <div class="cb-head"><span class="cb-lang">typescript</span><button class="cp-btn" onclick="cp(this)">copiar</button></div>
+                  <pre><span class="kw">class</span> <span class="ty">TypedEmitter</span><<span class="ty">Events</span> <span class="kw">extends</span> Record<<span class="ty">string</span>, <span class="kw">unknown</span>>> {
+    <span class="kw">private</span> handlers = <span class="kw">new</span> <span class="fn">Map</span><<span class="ty">string</span>, <span class="fn">Function</span>[]>();
+  
+    on<<span class="ty">K</span> <span class="kw">extends keyof</span> <span class="ty">Events</span>>(
+      event: <span class="ty">K</span>,
+      handler: (payload: <span class="ty">Events</span>[<span class="ty">K</span>]) => <span class="ty">void</span>
+    ): <span class="ty">void</span> {
+      <span class="kw">const</span> key = event <span class="kw">as</span> <span class="ty">string</span>;
+      <span class="kw">if</span> (!<span class="kw">this</span>.handlers.<span class="fn">has</span>(key)) <span class="kw">this</span>.handlers.<span class="fn">set</span>(key, []);
+      <span class="kw">this</span>.handlers.<span class="fn">get</span>(key)!.<span class="fn">push</span>(handler);
+    }
+  
+    emit<<span class="ty">K</span> <span class="kw">extends keyof</span> <span class="ty">Events</span>>(
+      event: <span class="ty">K</span>,
+      payload: <span class="ty">Events</span>[<span class="ty">K</span>]
+    ): <span class="ty">void</span> {
+      <span class="kw">const</span> fns = <span class="kw">this</span>.handlers.<span class="fn">get</span>(event <span class="kw">as</span> <span class="ty">string</span>) ?? [];
+      fns.<span class="fn">forEach</span>(fn => <span class="fn">fn</span>(payload));
+    }
+  
+    off<<span class="ty">K</span> <span class="kw">extends keyof</span> <span class="ty">Events</span>>(event: <span class="ty">K</span>): <span class="ty">void</span> {
+      <span class="kw">this</span>.handlers.<span class="fn">delete</span>(event <span class="kw">as</span> <span class="ty">string</span>);
+    }
+  }
+  
+  <span class="cm">// Uso completamente tipado:</span>
+  <span class="kw">const</span> emitter = <span class="kw">new</span> <span class="ty">TypedEmitter</span><<span class="ty">AppEvents</span>>();
+  
+  emitter.<span class="fn">on</span>(<span class="st">'user:login'</span>, ({ userId, email }) => {
+    console.<span class="fn">log</span>(<span class="st">`Login: ${email}`</span>); <span class="cm">// userId y email tipados</span>
+  });
+  
+  emitter.<span class="fn">emit</span>(<span class="st">'user:login'</span>, { userId:<span class="nm">1</span>, email:<span class="st">'<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5233122a7c313d3f">[email&#160;protected]</a>'</span> }); <span class="cm">// ✅</span>
+  <span class="cm">// emitter.emit('user:login', { userId: 1 }); ❌ falta email</span></pre>
+                </div>
+              </div>
+              <div id="exp-t5" class="tog-panel exp-panel">
+                <div class="exp-panel-inner">
+                  <strong>El truco central: <code>K extends keyof Events</code></strong><br>
+                  El parámetro de tipo <code>K</code> se infiere desde el primer argumento (el nombre del evento). TypeScript luego usa <code>Events[K]</code> para calcular el tipo del payload automáticamente.<br><br>
+                  <strong>Indexed access type <code>Events[K]</code>:</strong> es como acceder a una propiedad de un objeto pero a nivel de tipos. Si <code>K = 'user:login'</code>, entonces <code>Events[K] = { userId: number; email: string }</code>.<br><br>
+                  <strong>Por qué es poderoso:</strong> si llamas <code>emit('user:login', payload)</code> y el payload no coincide, TypeScript lanza un error en tiempo de compilación, no en ejecución. Es la diferencia entre detectar bugs al escribir vs al usar la app.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- fin ex-ts -->
+
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+
+</html>
